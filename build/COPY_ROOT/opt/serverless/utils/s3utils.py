@@ -1,7 +1,9 @@
-from botocore.client import Config
 import boto3
+from botocore.client import Config
+from botocore.exceptions import BotoCoreError
 
-class s3utils:
+
+class S3utils:
     def __init__(self, args):
         self.aws_access_key_id = args["aws_access_key_id"]
         self.aws_secret_access_key = args["aws_secret_access_key"]
@@ -10,11 +12,12 @@ class s3utils:
         self.connect_timeout = args["connect_timeout"]
         self.connect_attempts = args["connect_attempts"]
         self.config = Config(
-            connect_timeout=self.connect_timeout, 
-            retries = dict(
-                max_attempts = self.connect_attempts
-            ),
-            signature_version = 'v4'
+            # connect_timeout=self.connect_timeout, 
+            # retries = dict(
+            #     max_attempts = self.connect_attempts
+            # ),
+            # signature_version = 'v4'
+            s3={"addressing_style": "virtual", "signature_version": 's3v4'}
         )
         self.session = boto3.session.Session(
             aws_access_key_id = self.aws_access_key_id,
@@ -39,7 +42,9 @@ class s3utils:
                 'Bucket': f'{self.aws_bucket_name}',
                 'Key': f'{key}'
             }, ExpiresIn=604800)
-        except:
-          return ""
+        except BotoCoreError as boto_err:
+            print(f"Error uploading {filepath} to {self.aws_bucket_name}/{key}")
+            print(boto_err)
+            return ""
     
         return presigned_url

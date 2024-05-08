@@ -14,19 +14,19 @@ services:
       tags:
         - "ghcr.io/ai-dock/comfyui:${IMAGE_TAG:-pytorch-${PYTORCH_VERSION:-2.2.2}-py3.10-cuda-11.8.0-runtime-22.04}"
         
-    image: ghcr.io/ai-dock/comfyui:${IMAGE_TAG:-pytorch-${PYTORCH_VERSION:-2.2.2}-py3.10-cuda-11.8.0-runtime-22.04}
+    image: psyai/one-app-comfyui-service:20240508V1
     
     ## For Nvidia GPU's - You probably want to uncomment this
-    #deploy:
-    #  resources:
-    #    reservations:
-    #      devices:
-    #        - driver: nvidia
-    #          count: all
-    #          capabilities: [gpu]
+    deploy:
+     resources:
+       reservations:
+         devices:
+           - driver: nvidia
+             count: all
+             capabilities: [gpu]
     
-    devices:
-      - "/dev/dri:/dev/dri"
+    # devices:
+      # - "/dev/dri:/dev/dri"
       ## For AMD GPU
       #- "/dev/kfd:/dev/kfd"
       
@@ -43,7 +43,7 @@ services:
       - ./config/provisioning/default.sh:/opt/ai-dock/bin/provisioning.sh
     ports:
         # SSH available on host machine port 2222 to avoid conflict. Change to suit
-        - ${SSH_PORT_HOST:-2222}:22
+        # - ${SSH_PORT_HOST:-2222}:22
         # Caddy port for service portal
         - ${SERVICEPORTAL_PORT_HOST:-1111}:${SERVICEPORTAL_PORT_HOST:-1111}
         # ComfyUI web interface
@@ -63,7 +63,7 @@ services:
         - WORKSPACE_SYNC=${WORKSPACE_SYNC:-false}
         - CF_TUNNEL_TOKEN=${CF_TUNNEL_TOKEN:-}
         - CF_QUICK_TUNNELS=${CF_QUICK_TUNNELS:-true}
-        - WEB_ENABLE_AUTH=${WEB_ENABLE_AUTH:-true}
+        - WEB_ENABLE_AUTH=${WEB_ENABLE_AUTH:-false}
         - WEB_USER=${WEB_USER:-user}
         - WEB_PASSWORD=${WEB_PASSWORD:-password}
         - SSH_PORT_HOST=${SSH_PORT_HOST:-2222}

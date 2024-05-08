@@ -1,8 +1,11 @@
 import sys
 sys.path.append('/opt/serverless')
+
+# pylint: disable=wrong-import-position
+import uuid
 from pydoc import locate
 import runpod
-import uuid
+
 
 def get_handler(payload):
     try:
@@ -10,14 +13,14 @@ def get_handler(payload):
         m_name = c_name.lower()
         handler_class = locate(f"handlers.{m_name}.{c_name}")
         handler = handler_class(payload)
-    except:
+    except Exception as e:
+        print(e)
         raise
         
     return handler
   
-'''
-Handler to be specified in input.handler
-'''
+
+# Handler to be specified in input.handler
 def worker(event):
     result = {}
     try:
@@ -28,7 +31,7 @@ def worker(event):
             payload["request_id"] = event["id"]
         handler = get_handler(payload)
         result = handler.handle()
-    except Exception as e:
+    except KeyError as e:
         result = {}
         result["error"] = str(e)
     

@@ -21,14 +21,18 @@ function start() {
     fi
     printf "Serverless worker started: %s\n" "$(date +"%x %T.%3N")" >> /var/log/timing_data
     
-    if [[ -n $RUNPOD_ENDPOINT_ID ]]; then
-        printf "Starting RunPod serverless worker...\n"
-        micromamba -n serverless run \
-            python -u /opt/serverless/providers/runpod/worker.py
-    else
-        printf "No serverless worker available in this environment"
-        exec sleep 10
-    fi
+    # if [[ -n $RUNPOD_ENDPOINT_ID ]]; then
+    #     printf "Starting RunPod serverless worker...\n"
+    #     micromamba -n serverless run \
+    #         python -u /opt/serverless/providers/runpod/worker.py
+    # else
+    #     printf "No serverless worker available in this environment"
+    #     exec sleep 10
+    # fi
+    
+    print "Starting aliyun serverless api ... \n"
+    micromamba -n serverless run \
+        python -u /opt/serverless/providers/aliyun/api.py
 }
 
 start 2>&1

@@ -8,7 +8,10 @@ PYTHON_PACKAGES=(
 )
 
 NODES=(
-    #"https://github.com/ltdrdata/ComfyUI-Manager"
+    # "https://github.com/ltdrdata/ComfyUI-Manager"
+    "https://github.com/Kosinkadink/ComfyUI-VideoHelperSuite"
+    "https://github.com/giriss/comfy-image-saver"
+    "https://github.com/theUpsider/ComfyUI-Logic"
 )
 
 CHECKPOINT_MODELS=(

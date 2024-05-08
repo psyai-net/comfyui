@@ -15,8 +15,7 @@ NODES=(
 )
 
 CHECKPOINT_MODELS=(
-    # "https://hf-mirror.com/runwayml/stable-diffusion-v1-5/resolve/main/v1-5-pruned-emaonly.ckpt"
-    # "https://hf-mirror.com/stabilityai/stable-video-diffusion-img2vid-xt/resolve/main/svd_xt.safetensors"
+    # "https://huggingface.co/runwayml/stable-diffusion-v1-5/resolve/main/v1-5-pruned-emaonly.ckpt"
     #"https://huggingface.co/stabilityai/stable-diffusion-2-1/resolve/main/v2-1_768-ema-pruned.ckpt"
     #"https://huggingface.co/stabilityai/stable-diffusion-xl-base-1.0/resolve/main/sd_xl_base_1.0.safetensors"
     #"https://huggingface.co/stabilityai/stable-diffusion-xl-refiner-1.0/resolve/main/sd_xl_refiner_1.0.safetensors"
@@ -58,19 +57,6 @@ CONTROLNET_MODELS=(
     #"https://huggingface.co/webui/ControlNet-modules-safetensors/resolve/main/t2iadapter_style-fp16.safetensors"
 )
 
-STABLE_CASCADE_UNET=(
-    "https://hf-mirror.com/stabilityai/stable-cascade/resolve/main/stage_b_bf16.safetensors"
-    "https://hf-mirror.com/stabilityai/stable-cascade/resolve/main/stage_c_bf16.safetensors"
-)
-
-STABLE_CASCADE_VAE=(
-    "https://hf-mirror.com/stabilityai/stable-cascade/resolve/main/stage_a.safetensors"
-)
-
-STABLE_CASCADE_CLIP=(
-    "https://hf-mirror.com/stabilityai/stable-cascade/resolve/main/text_encoder/model.safetensors"
-)
-
 ### DO NOT EDIT BELOW HERE UNLESS YOU KNOW WHAT YOU ARE DOING ###
 
 function provisioning_start() {
@@ -95,15 +81,6 @@ function provisioning_start() {
     provisioning_get_models \
         "${WORKSPACE}/storage/stable_diffusion/models/esrgan" \
         "${ESRGAN_MODELS[@]}"
-    # provisioning_get_models \
-    #     "${WORKSPACE}/storage/stable_diffusion/models/unet/Stable-Cascade" \
-    #     "${STABLE_CASCADE_UNET[@]}"
-    # provisioning_get_models \
-    #     "${WORKSPACE}/storage/stable_diffusion/models/vae/Stable-Cascade" \
-    #     "${STABLE_CASCADE_VAE[@]}"    
-    # provisioning_get_models \
-    #     "${WORKSPACE}/storage/stable_diffusion/models/clip/Stable-Cascade" \
-    #     "${STABLE_CASCADE_CLIP[@]}"
     provisioning_print_end
 }
 
