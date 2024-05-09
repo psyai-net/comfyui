@@ -22,6 +22,9 @@ ENV OPT_SYNC=ComfyUI:serverless
 # Copy early so we can use scripts in the build - Changes to these files will invalidate the cache and cause a rebuild.
 COPY --chown=0:1111 ./COPY_ROOT/ /
 
+# donot want syncthing
+RUN rm -f /etc/supervisor/supervisord/conf.d/syncthing.conf
+
 # Use build scripts to ensure we can build all targets from one Dockerfile in a single layer.
 # Don't put anything heavy in here - We can use multi-stage building above if necessary.
 
