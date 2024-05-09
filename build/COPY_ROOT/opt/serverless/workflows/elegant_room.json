@@ -149,9 +149,9 @@
     "inputs": {
       "Text": ""
     },
-    "class_type": "Text",
+    "class_type": "String",
     "_meta": {
-      "title": "Text"
+      "title": "FilePrefix"
     }
   }
 }
