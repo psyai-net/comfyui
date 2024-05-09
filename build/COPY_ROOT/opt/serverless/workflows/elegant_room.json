@@ -147,11 +147,11 @@
   },
   "29": {
     "inputs": {
-      "Text": ""
+      "value": ""
     },
     "class_type": "String",
     "_meta": {
-      "title": "FilePrefix"
+      "title": "String"
     }
   }
 }

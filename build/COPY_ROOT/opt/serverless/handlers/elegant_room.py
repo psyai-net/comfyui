@@ -21,4 +21,4 @@ class ElegantRoom(BaseHandler):
         workflow["5"]["inputs"]["batch_size"] = self.get_value("batch", 2)
         workflow["6"]["inputs"]["text"] = ",".join([self.get_value("include_text",""), elegant_room_prompt])
         workflow["7"]["inputs"]["text"] = self.get_value("exclude_text","")     
-        workflow["29"]["inputs"]["text"] = "_".join(["elegant_room", self.get_value("request_id","")])
+        workflow["29"]["inputs"]["value"] = "_".join(["elegant_room", self.get_value("request_id","")])
