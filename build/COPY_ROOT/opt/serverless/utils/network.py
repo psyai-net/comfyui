@@ -39,6 +39,7 @@ class Network:
             file_extension = Filesystem.get_file_extension(filepath_hash)     
             filepath = f"{filepath_hash}{file_extension}"
             os.replace(filepath_hash, filepath)
+            return filepath
             
         except requests.RequestException as req_err:
             print(f"Error downloading file: {req_err}")

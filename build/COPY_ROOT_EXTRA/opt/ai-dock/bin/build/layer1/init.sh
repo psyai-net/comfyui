@@ -12,6 +12,7 @@ NODES=(
     "https://github.com/Kosinkadink/ComfyUI-VideoHelperSuite"
     "https://github.com/giriss/comfy-image-saver"
     "https://github.com/theUpsider/ComfyUI-Logic"
+    "https://github.com/palant/image-resize-comfyui"
 )
 
 CHECKPOINT_MODELS=(

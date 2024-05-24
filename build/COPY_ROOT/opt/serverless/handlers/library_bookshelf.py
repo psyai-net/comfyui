@@ -3,11 +3,11 @@ import os
 from handlers.basehandler import BaseHandler
 from utils.imageutils import calculate_aspect_ratio
 
-elegant_room_prompt = os.environ.get("ELEGANT_ROOM_PROMPT","photo-realistic， Canon RF 85mm f/1.2L，Nikon AF-S 105mm f/1.4E ED， Eye-level Angle")
+elegant_room_prompt = os.environ.get("ELEGANT_ROOM_PROMPT","photo-realistic，no human, best quality, Canon RF 85mm f/1.2L，Nikon AF-S 105mm f/1.4E ED， Eye-level Angle")
 
-class ElegantRoom(BaseHandler):
+class LibraryBookshelf(BaseHandler):
     
-    WORKFLOW_JSON = "/opt/serverless/workflows/elegant_room.json"
+    WORKFLOW_JSON = "/opt/serverless/workflows/library_bookshelf.json"
     
     def __init__(self, payload):
         super().__init__(payload, self.WORKFLOW_JSON)

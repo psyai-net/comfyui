@@ -41,7 +41,7 @@ class Text2Image(BaseHandler):
             "height",
             512)
         self.prompt["prompt"]["5"]["inputs"]["batch_size"] = self.get_value(
-            "batch_size",
+            "batch",
             1)
         self.prompt["prompt"]["6"]["inputs"]["text"] = self.get_value(
             "include_text",

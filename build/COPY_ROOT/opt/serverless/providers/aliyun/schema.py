@@ -7,3 +7,7 @@ class ImageGenerationBase(BaseModel):
     width: int = Field(default=512, description="image width")
     height: int = Field(default=512, description="image height")
     batch: int = Field(default=1, description="batch num")
+
+
+class ImageUpscaleBase(BaseModel):
+    image : str = Field(description="image url")

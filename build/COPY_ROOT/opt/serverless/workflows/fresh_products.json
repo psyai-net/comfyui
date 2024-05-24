@@ -1,14 +1,17 @@
 {
   "3": {
     "inputs": {
-      "seed": 1040412746217970,
+      "seed": [
+        "30",
+        0
+      ],
       "steps": 25,
       "cfg": 7,
-      "sampler_name": "euler",
+      "sampler_name": "euler_ancestral",
       "scheduler": "normal",
-      "denoise": 0.8,
+      "denoise": 1,
       "model": [
-        "27",
+        "4",
         0
       ],
       "positive": [
@@ -31,7 +34,7 @@
   },
   "4": {
     "inputs": {
-      "ckpt_name": "老王_Architecutral_MIX_V0.5.safetensors"
+      "ckpt_name": "生鲜电商KV_V2.safetensors"
     },
     "class_type": "CheckpointLoaderSimple",
     "_meta": {
@@ -51,9 +54,9 @@
   },
   "6": {
     "inputs": {
-      "text": "reading room, photo-realistic， Canon RF 85mm f/1.2L，Nikon AF-S 105mm f/1.4E ED， Eye-level Angle",
+      "text": "masterpiece,best quality",
       "clip": [
-        "27",
+        "4",
         1
       ]
     },
@@ -66,7 +69,7 @@
     "inputs": {
       "text": "",
       "clip": [
-        "11",
+        "4",
         1
       ]
     },
@@ -91,44 +94,6 @@
       "title": "VAE Decode"
     }
   },
-  "11": {
-    "inputs": {
-      "lora_name": "indoor_minimalist_housing.safetensors",
-      "strength_model": 0.5,
-      "strength_clip": 0.5,
-      "model": [
-        "4",
-        0
-      ],
-      "clip": [
-        "4",
-        1
-      ]
-    },
-    "class_type": "LoraLoader",
-    "_meta": {
-      "title": "Load LoRA"
-    }
-  },
-  "27": {
-    "inputs": {
-      "lora_name": "indoor_modern.safetensors",
-      "strength_model": 0.2,
-      "strength_clip": 0.2,
-      "model": [
-        "11",
-        0
-      ],
-      "clip": [
-        "11",
-        1
-      ]
-    },
-    "class_type": "LoraLoader",
-    "_meta": {
-      "title": "Load LoRA"
-    }
-  },
   "28": {
     "inputs": {
       "filename_prefix": [
@@ -136,7 +101,7 @@
         0
       ],
       "images": [
-        "30",
+        "31",
         0
       ]
     },
@@ -156,15 +121,21 @@
   },
   "30": {
     "inputs": {
+      "seed": 831877177320961
+    },
+    "class_type": "Seed Generator",
+    "_meta": {
+      "title": "Seed Generator"
+    }
+  },
+  "31": {
+    "inputs": {
       "action": "crop to ratio",
       "smaller_side": 0,
       "larger_side": 480,
       "scale_factor": 0,
       "resize_mode": "any",
-      "side_ratio": [
-        "32",
-        0
-      ],
+      "side_ratio": "4:3",
       "crop_pad_position": 0.5,
       "pad_feathering": 20,
       "pixels": [
@@ -175,15 +146,6 @@
     "class_type": "ImageResize",
     "_meta": {
       "title": "Image Resize"
-    }
-  },
-  "32": {
-    "inputs": {
-      "value": "4:3"
-    },
-    "class_type": "String",
-    "_meta": {
-      "title": "String"
     }
   }
 }

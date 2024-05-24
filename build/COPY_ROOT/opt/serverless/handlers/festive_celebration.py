@@ -3,11 +3,11 @@ import os
 from handlers.basehandler import BaseHandler
 from utils.imageutils import calculate_aspect_ratio
 
-elegant_room_prompt = os.environ.get("ELEGANT_ROOM_PROMPT","photo-realistic， Canon RF 85mm f/1.2L，Nikon AF-S 105mm f/1.4E ED， Eye-level Angle")
+elegant_room_prompt = os.environ.get("FRESH_PRODUCTS_PROMPT","no humans,masterpiece,best quality")
 
-class ElegantRoom(BaseHandler):
+class FestiveCelebration(BaseHandler):
     
-    WORKFLOW_JSON = "/opt/serverless/workflows/elegant_room.json"
+    WORKFLOW_JSON = "/opt/serverless/workflows/festive_celebration.json"
     
     def __init__(self, payload):
         super().__init__(payload, self.WORKFLOW_JSON)
@@ -21,12 +21,12 @@ class ElegantRoom(BaseHandler):
         image_ratio = calculate_aspect_ratio(image_width, image_height)
         
         workflow = self.prompt["prompt"]
-        workflow["3"]["inputs"]["seed"] = random.randint(0,2**32)
+        # workflow["3"]["inputs"]["seed"] = random.randint(0,2**32)
         workflow["5"]["inputs"]["width"] = image_width
         workflow["5"]["inputs"]["height"] = image_height
         workflow["5"]["inputs"]["batch_size"] = self.get_value("batch", 2)
         workflow["6"]["inputs"]["text"] = ",".join([self.get_value("include_text",""), elegant_room_prompt])
         workflow["7"]["inputs"]["text"] = self.get_value("exclude_text","")     
-        workflow["29"]["inputs"]["value"] = "_".join(["elegant_room", self.get_value("request_id","")])
-        workflow["30"]["inputs"]["larger_side"] = image_width if image_width > image_height else image_height
-        workflow["32"]["inputs"]["value"] = image_ratio            
+        workflow["29"]["inputs"]["value"] = "_".join(["fresh_products", self.get_value("request_id","")])
+        workflow["32"]["inputs"]["larger_side"] = image_width if image_width > image_height else image_height
+        workflow["32"]["inputs"]["side_ratio"] = image_ratio            
