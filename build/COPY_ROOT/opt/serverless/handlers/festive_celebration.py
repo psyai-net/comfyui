@@ -3,7 +3,7 @@ import os
 from handlers.basehandler import BaseHandler
 from utils.imageutils import calculate_aspect_ratio
 
-elegant_room_prompt = os.environ.get("FRESH_PRODUCTS_PROMPT","no humans,masterpiece,best quality")
+elegant_room_prompt = os.environ.get("FESTIVE_CELEBRATION_PROMPT","no humans,masterpiece,best quality")
 
 class FestiveCelebration(BaseHandler):
     
@@ -27,6 +27,6 @@ class FestiveCelebration(BaseHandler):
         workflow["5"]["inputs"]["batch_size"] = self.get_value("batch", 2)
         workflow["6"]["inputs"]["text"] = ",".join([self.get_value("include_text",""), elegant_room_prompt])
         workflow["7"]["inputs"]["text"] = self.get_value("exclude_text","")     
-        workflow["29"]["inputs"]["value"] = "_".join(["fresh_products", self.get_value("request_id","")])
+        workflow["29"]["inputs"]["value"] = "_".join(["festive_celebration", self.get_value("request_id","")])
         workflow["32"]["inputs"]["larger_side"] = image_width if image_width > image_height else image_height
         workflow["32"]["inputs"]["side_ratio"] = image_ratio            

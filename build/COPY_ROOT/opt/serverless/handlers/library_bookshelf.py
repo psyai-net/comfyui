@@ -3,7 +3,7 @@ import os
 from handlers.basehandler import BaseHandler
 from utils.imageutils import calculate_aspect_ratio
 
-elegant_room_prompt = os.environ.get("ELEGANT_ROOM_PROMPT","photo-realistic，no human, best quality, Canon RF 85mm f/1.2L，Nikon AF-S 105mm f/1.4E ED， Eye-level Angle")
+elegant_room_prompt = os.environ.get("LIBRARY_BOOKSHELF_PROMPT","photo-realistic，no human, best quality, Canon RF 85mm f/1.2L，Nikon AF-S 105mm f/1.4E ED， Eye-level Angle")
 
 class LibraryBookshelf(BaseHandler):
     
@@ -27,6 +27,6 @@ class LibraryBookshelf(BaseHandler):
         workflow["5"]["inputs"]["batch_size"] = self.get_value("batch", 2)
         workflow["6"]["inputs"]["text"] = ",".join([self.get_value("include_text",""), elegant_room_prompt])
         workflow["7"]["inputs"]["text"] = self.get_value("exclude_text","")     
-        workflow["29"]["inputs"]["value"] = "_".join(["elegant_room", self.get_value("request_id","")])
+        workflow["29"]["inputs"]["value"] = "_".join(["library_bookshelf", self.get_value("request_id","")])
         workflow["30"]["inputs"]["larger_side"] = image_width if image_width > image_height else image_height
         workflow["32"]["inputs"]["value"] = image_ratio            
